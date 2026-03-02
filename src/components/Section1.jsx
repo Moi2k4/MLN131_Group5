@@ -11,10 +11,10 @@ const timelineEvents = [
 
 export default function Section1() {
     useEffect(() => {
-        const els = document.querySelectorAll('#section1 .reveal-card, #section1 .section-header');
+        const els = document.querySelectorAll('#section1 .reveal-card');
         const obs = new IntersectionObserver(
             (entries) => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('revealed'); } }),
-            { threshold: 0.15 }
+            { threshold: 0, rootMargin: '0px 0px -50px 0px' }
         );
         els.forEach(el => obs.observe(el));
         return () => obs.disconnect();
