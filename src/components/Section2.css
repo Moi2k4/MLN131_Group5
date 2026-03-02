@@ -1,0 +1,217 @@
+.factors-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+    margin-bottom: 60px;
+}
+
+.factor-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px;
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition);
+    cursor: default;
+}
+
+.factor-card:hover,
+.factor-card.hovered {
+    transform: translateY(-6px);
+    border-color: var(--accent);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4), 0 0 0 1px var(--accent);
+}
+
+.factor-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 0, var(--accent) 0%, transparent 60%);
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.factor-card:hover::before,
+.factor-card.hovered::before {
+    opacity: 0.06;
+}
+
+.factor-num {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    font-family: 'Playfair Display', serif;
+}
+
+.factor-icon {
+    font-size: 32px;
+    margin-bottom: 14px;
+    display: block;
+}
+
+.factor-card h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 14px;
+    line-height: 1.4;
+}
+
+.factor-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.factor-list li {
+    font-size: 13px;
+    color: var(--text-muted);
+    padding-left: 16px;
+    position: relative;
+    line-height: 1.6;
+}
+
+.factor-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+}
+
+.factor-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    width: 0;
+    background: var(--accent);
+    border-radius: 0 0 var(--radius) var(--radius);
+    transition: width 0.4s ease;
+}
+
+.factor-card:hover .factor-bar,
+.factor-card.hovered .factor-bar {
+    width: 100%;
+}
+
+/* Diagram */
+.diagram-wrapper {
+    text-align: center;
+    padding-top: 20px;
+}
+
+.diagram {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    margin: 0 auto;
+}
+
+.diagram-core {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(135deg, rgba(200, 168, 75, 0.15), rgba(200, 168, 75, 0.05));
+    border: 1px solid rgba(200, 168, 75, 0.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    animation: rotateSlow 20s linear infinite;
+}
+
+@keyframes rotateSlow {
+    from {
+        box-shadow: 0 0 20px rgba(200, 168, 75, 0.2);
+    }
+
+    50% {
+        box-shadow: 0 0 40px rgba(200, 168, 75, 0.4);
+    }
+
+    to {
+        box-shadow: 0 0 20px rgba(200, 168, 75, 0.2);
+    }
+}
+
+.diagram-core span {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1.4;
+    text-align: center;
+}
+
+.diagram-item {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.d-item-0 {
+    top: 0;
+    left: 10px;
+}
+
+.d-item-1 {
+    top: 0;
+    right: 10px;
+}
+
+.d-item-2 {
+    bottom: 0;
+    left: 10px;
+}
+
+.d-item-3 {
+    bottom: 0;
+    right: 10px;
+}
+
+.di-icon {
+    width: 52px;
+    height: 52px;
+    font-size: 22px;
+    background: var(--surface);
+    border: 1px solid var(--color, var(--border));
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    transition: var(--transition);
+}
+
+.di-icon:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px var(--color);
+}
+
+.diagram-item span {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+.diagram-lines {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
