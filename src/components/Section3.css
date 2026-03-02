@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: column;
     gap: 12px;
+    margin-bottom: 80px;
 }
 
 .relation-item {
@@ -81,6 +82,7 @@
     border-top: 1px solid var(--border);
     padding-top: 24px;
     animation: slideDown 0.25s ease;
+
 }
 
 @keyframes slideDown {
@@ -201,6 +203,56 @@
     color: var(--accent);
 }
 
+/* Conclusion */
+.conclusion-card {
+    background: linear-gradient(135deg, var(--surface) 0%, rgba(200, 168, 75, 0.05) 100%);
+    border: 1px solid rgba(200, 168, 75, 0.2);
+    border-radius: 20px;
+    padding: 48px;
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto;
+    position: relative;
+    clear: both;
+}
+
+.conclusion-flag {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.conclusion-card h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 18px;
+}
+
+.conclusion-card p {
+    color: var(--text-muted);
+    font-size: 15px;
+    line-height: 1.9;
+    margin-bottom: 28px;
+}
+
+.conclusion-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+}
+
+.ctag {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--accent);
+    background: rgba(200, 168, 75, 0.1);
+    border: 1px solid rgba(200, 168, 75, 0.2);
+    padding: 5px 14px;
+    border-radius: 99px;
+}
+
 @media (max-width: 600px) {
     .rel-dual {
         grid-template-columns: 1fr;
@@ -213,5 +265,17 @@
 
     .rel-title {
         font-size: 14px;
+    }
+
+    .conclusion-card {
+        padding: 32px 24px;
+    }
+
+    .conclusion-flag {
+        font-size: 36px;
+    }
+
+    .conclusion-card h2 {
+        font-size: 24px;
     }
 }

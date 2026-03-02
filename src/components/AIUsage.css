@@ -1,0 +1,355 @@
+/* AI Usage Section */
+#ai-usage {
+    background: var(--bg2);
+}
+
+/* Subsection Titles */
+.subsection-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 24px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 32px;
+    font-family: 'Playfair Display', serif;
+}
+
+.title-icon {
+    font-size: 28px;
+}
+
+/* AI Tools Section */
+.ai-tools-section {
+    margin-bottom: 80px;
+}
+
+.ai-tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+.ai-tool-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px;
+    transition: all var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.ai-tool-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--tool-color);
+    opacity: 0.8;
+}
+
+.ai-tool-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--border2);
+    box-shadow: var(--shadow);
+}
+
+.tool-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.tool-icon {
+    font-size: 32px;
+    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
+}
+
+.tool-name {
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    margin: 0;
+}
+
+.tool-purposes {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.tool-purposes li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    color: var(--text-muted);
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 12px;
+}
+
+.tool-purposes li:last-child {
+    margin-bottom: 0;
+}
+
+.purpose-bullet {
+    color: var(--tool-color);
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+/* Verification Process */
+.verification-section {
+    margin-bottom: 80px;
+}
+
+.verification-flow {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.verification-step {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 32px;
+    position: relative;
+    transition: all var(--transition);
+}
+
+.verification-step:hover {
+    border-color: var(--accent);
+    box-shadow: 0 4px 16px rgba(200, 168, 75, 0.15);
+}
+
+.step-number {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: rgba(200, 168, 75, 0.1);
+    border: 1px solid rgba(200, 168, 75, 0.3);
+    color: var(--accent);
+    padding: 6px 14px;
+    border-radius: 99px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.step-icon {
+    font-size: 40px;
+    margin-bottom: 16px;
+    display: inline-block;
+}
+
+.step-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 12px;
+}
+
+.step-desc {
+    color: var(--text-muted);
+    font-size: 15px;
+    line-height: 1.7;
+    margin: 0;
+}
+
+.flow-connector {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 32px;
+}
+
+.flow-connector svg {
+    width: 24px;
+    height: 24px;
+    color: var(--accent);
+    opacity: 0.6;
+}
+
+/* Commitment Section */
+.commitment-section {
+    margin-bottom: 80px;
+}
+
+.commitment-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 40px;
+}
+
+.commitment-intro {
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--text);
+    margin-bottom: 32px;
+    text-align: center;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.commitment-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 24px;
+}
+
+.commitment-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 16px 20px;
+    transition: all var(--transition);
+}
+
+.commitment-item:hover {
+    border-color: var(--accent);
+    transform: translateX(4px);
+}
+
+.commitment-icon {
+    font-size: 24px;
+    flex-shrink: 0;
+}
+
+.commitment-text {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+}
+
+/* References Section */
+.references-section {
+    margin-bottom: 40px;
+}
+
+.references-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 32px;
+}
+
+.reference-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.reference-icon {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-sm);
+    background: rgba(200, 168, 75, 0.1);
+    border: 1px solid rgba(200, 168, 75, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.reference-icon svg {
+    width: 24px;
+    height: 24px;
+    color: var(--accent);
+}
+
+.reference-content {
+    flex: 1;
+}
+
+.reference-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 8px;
+}
+
+.reference-desc {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Reveal Animation */
+.reveal-item {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.reveal-item.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .subsection-title {
+        font-size: 20px;
+    }
+
+    .title-icon {
+        font-size: 24px;
+    }
+
+    .ai-tools-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .verification-step {
+        padding: 24px;
+    }
+
+    .step-number {
+        position: static;
+        display: inline-block;
+        margin-bottom: 12px;
+    }
+
+    .commitment-card {
+        padding: 24px;
+    }
+
+    .commitment-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .commitment-item {
+        padding: 14px 16px;
+    }
+
+    .references-card {
+        padding: 24px;
+    }
+
+    .reference-item {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .ai-tools-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .commitment-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
