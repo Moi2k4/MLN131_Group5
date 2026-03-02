@@ -111,6 +111,25 @@
     background-clip: text;
 }
 
+.animated-gradient {
+    background: linear-gradient(90deg, var(--accent), #fff, var(--accent2), var(--accent));
+    background-size: 300% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradientShift 4s linear infinite;
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: 300% 50%;
+    }
+}
+
 .hero-subtitle {
     font-size: clamp(16px, 2.5vw, 22px);
     color: var(--text-muted);
@@ -260,18 +279,104 @@
 }
 
 .fade-up {
-    animation: fadeUp 0.8s ease both;
+    opacity: 0;
+    animation: fadeUp 0.85s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 @keyframes fadeUp {
     from {
         opacity: 0;
-        transform: translateY(30px);
+        transform: translateY(36px);
     }
 
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+/* Shimmer badge */
+.shimmer-badge {
+    position: relative;
+    overflow: hidden;
+}
+
+.shimmer-badge::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.18) 50%, transparent 100%);
+    transform: translateX(-100%);
+    animation: shimmerMove 2.8s ease-in-out infinite;
+}
+
+@keyframes shimmerMove {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    60% {
+        transform: translateX(100%);
+    }
+
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* Typewriter cursor */
+.typewriter-wrap {
+    min-height: 1.6em;
+}
+
+.cursor-blink {
+    display: inline-block;
+    color: var(--accent);
+    animation: blinkCursor 0.7s step-end infinite;
+    font-weight: 300;
+    margin-left: 2px;
+}
+
+@keyframes blinkCursor {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}
+
+/* Button shine sweep */
+.btn-primary {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-shine {
+    position: absolute;
+    top: 0;
+    left: -75%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.28), transparent);
+    transform: skewX(-20deg);
+    animation: btnSweep 3s ease-in-out infinite;
+}
+
+@keyframes btnSweep {
+    0% {
+        left: -75%;
+    }
+
+    40% {
+        left: 125%;
+    }
+
+    100% {
+        left: 125%;
     }
 }
 

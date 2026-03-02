@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import './Section1.css';
 
 const timelineEvents = [
@@ -10,20 +10,34 @@ const timelineEvents = [
 ];
 
 export default function Section1() {
+    const sectionRef = useRef(null);
+
     useEffect(() => {
-        const els = document.querySelectorAll('#section1 .reveal-card');
+        const section = sectionRef.current;
+        if (!section) return;
+
+        // Staggered reveal for all scroll-reveal elements
+        const els = section.querySelectorAll('.reveal-card, .timeline-item, .section-header');
         const obs = new IntersectionObserver(
-            (entries) => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('revealed'); } }),
-            { threshold: 0, rootMargin: '0px 0px -50px 0px' }
+            (entries) => entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.classList.add('revealed');
+                    obs.unobserve(e.target);
+                }
+            }),
+            { threshold: 0, rootMargin: '0px 0px -60px 0px' }
         );
-        els.forEach(el => obs.observe(el));
+        els.forEach((el, i) => {
+            el.style.transitionDelay = `${i * 0.07}s`;
+            obs.observe(el);
+        });
         return () => obs.disconnect();
     }, []);
 
     return (
-        <section className="content-section" id="section1">
+        <section className="content-section" id="section1" ref={sectionRef}>
             <div className="container">
-                <div className="section-header">
+                <div className="section-header reveal-card">
                     <span className="section-badge">Phần I</span>
                     <h2 className="section-title">Bản chất &amp; Đặc điểm thời kỳ quá độ tại Việt Nam</h2>
                     <p className="section-intro">Sự phân tích sâu về tính tất yếu lịch sử và bản chất đan xen giữa cái cũ và cái mới.</p>
@@ -82,10 +96,10 @@ export default function Section1() {
 
                 {/* Timeline */}
                 <div className="timeline-wrapper">
-                    <h3 className="subsection-title">Cột mốc lịch sử quan trọng</h3>
+                    <h3 className="subsection-title reveal-card">Cột mốc lịch sử quan trọng</h3>
                     <div className="timeline">
                         {timelineEvents.map((ev, i) => (
-                            <div className="timeline-item" key={i}>
+                            <div className="timeline-item reveal-card" key={i}>
                                 <div className="timeline-dot" />
                                 <div className="timeline-content">
                                     <span className="timeline-year">{ev.year}</span>

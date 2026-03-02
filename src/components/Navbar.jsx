@@ -32,7 +32,7 @@ export default function Navbar() {
       <div className="nav-inner container">
         <button className="nav-brand" onClick={() => scrollTo('hero')}>
           <span className="brand-badge">MLN131</span>
-          <span className="brand-text">Nhóm 1</span>
+          <span className="brand-text">Nhóm 5</span>
         </button>
         <ul className={`nav-links ${menuOpen ? 'open' : ''}`}>
           {[

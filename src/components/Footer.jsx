@@ -28,7 +28,7 @@ export default function Footer() {
                     <div className="footer-inner">
                         <div className="footer-brand">
                             <span className="brand-badge">MLN131</span>
-                            <p>Nhóm 1 — Chủ đề thuyết trình</p>
+                            <p>Nhóm 5 — Chủ đề thuyết trình</p>
                         </div>
                         <p className="footer-topic">
                             Việt Nam trong thời kỳ quá độ lên chủ nghĩa xã hội:<br />
