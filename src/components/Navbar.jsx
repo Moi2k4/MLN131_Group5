@@ -9,7 +9,7 @@ export default function Navbar() {
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 60);
-      const sections = ['hero', 'section1', 'section2', 'section3'];
+      const sections = ['hero', 'section1', 'section2', 'section3', 'strategy-game'];
       for (let i = sections.length - 1; i >= 0; i--) {
         const el = document.getElementById(sections[i]);
         if (el && window.scrollY >= el.offsetTop - 120) {
@@ -23,7 +23,17 @@ export default function Navbar() {
   }, []);
 
   const scrollTo = (id) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    const element = document.getElementById(id);
+    if (element) {
+      const navbarHeight = 80; // Chiều cao navbar
+      const elementPosition = element.offsetTop;
+      const offsetPosition = elementPosition - navbarHeight;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
     setMenuOpen(false);
   };
 
@@ -39,6 +49,8 @@ export default function Navbar() {
             { id: 'section1', label: 'I. Đặc điểm' },
             { id: 'section2', label: 'II. Yếu tố then chốt' },
             { id: 'section3', label: 'III. Mối quan hệ' },
+            { id: 'strategy-game' , label: 'IV. Trò chơi' },
+            { id: 'ai', label: 'V. Sử dụng AI' },
           ].map(({ id, label }) => (
             <li key={id}>
               <button

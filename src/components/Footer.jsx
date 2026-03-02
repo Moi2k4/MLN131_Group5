@@ -36,7 +36,7 @@ export default function Footer() {
                         </p>
                     </div>
                     <div className="footer-bottom">
-                        <p>&copy; 2025 MLN131 – Nhóm 1. Môn học Chủ nghĩa Mác–Lênin.</p>
+                        <p>&copy; 2026 MLN131 – Nhóm 1. Môn học Chủ nghĩa Mác–Lênin.</p>
                     </div>
                 </div>
             </footer>
