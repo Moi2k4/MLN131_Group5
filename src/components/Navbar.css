@@ -6,6 +6,19 @@
     z-index: 100;
     padding: 20px 0;
     transition: var(--transition);
+    animation: navSlideIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes navSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .navbar.scrolled {
@@ -76,6 +89,32 @@
 .nav-link.active {
     color: var(--accent);
     background: rgba(200, 168, 75, 0.1);
+    position: relative;
+}
+
+.nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: 3px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 16px;
+    height: 2px;
+    background: var(--accent);
+    border-radius: 99px;
+    animation: dotPop 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes dotPop {
+    from {
+        width: 0;
+        opacity: 0;
+    }
+
+    to {
+        width: 16px;
+        opacity: 1;
+    }
 }
 
 .hamburger {

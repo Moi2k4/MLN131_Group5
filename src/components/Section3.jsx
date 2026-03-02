@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import './Section3.css';
 
 const tags = ['Chủ nghĩa Mác–Lênin', 'Kinh tế thị trường XHCN', 'Đổi mới sáng tạo', 'Độc lập tự chủ', 'Hội nhập quốc tế'];
@@ -64,6 +64,31 @@ const relations = [
     },
 ];
 
+function AnimatedAccordionBody({ isOpen, children }) {
+    const innerRef = useRef(null);
+    const [height, setHeight] = useState(0);
+
+    useEffect(() => {
+        if (!innerRef.current) return;
+        if (isOpen) {
+            setHeight(innerRef.current.scrollHeight);
+        } else {
+            setHeight(0);
+        }
+    }, [isOpen]);
+
+    return (
+        <div
+            className="accordion-outer"
+            style={{ height, overflow: 'hidden', transition: 'height 0.42s cubic-bezier(0.22,1,0.36,1)' }}
+        >
+            <div ref={innerRef} className="relation-body">
+                {children}
+            </div>
+        </div>
+    );
+}
+
 function TripodBody({ r }) {
     return (
         <>
@@ -106,11 +131,32 @@ function DualBody({ r }) {
 export default function Section3() {
     const [open, setOpen] = useState(null);
     const toggle = (i) => setOpen(open === i ? null : i);
+    const sectionRef = useRef(null);
+
+    useEffect(() => {
+        const section = sectionRef.current;
+        if (!section) return;
+        const els = section.querySelectorAll('.section-header, .relation-item');
+        const obs = new IntersectionObserver(
+            (entries) => entries.forEach((e, idx) => {
+                if (e.isIntersecting) {
+                    e.target.classList.add('revealed');
+                    obs.unobserve(e.target);
+                }
+            }),
+            { threshold: 0, rootMargin: '0px 0px -50px 0px' }
+        );
+        els.forEach((el, i) => {
+            el.style.transitionDelay = `${i * 0.06}s`;
+            obs.observe(el);
+        });
+        return () => obs.disconnect();
+    }, []);
 
     return (
-        <section className="content-section" id="section3">
+        <section className="content-section" id="section3" ref={sectionRef}>
             <div className="container">
-                <div className="section-header">
+                <div className="section-header reveal-card">
                     <span className="section-badge">Phần III</span>
                     <h2 className="section-title">Những mối quan hệ cần phải giải quyết</h2>
                     <p className="section-intro">Năm mối quan hệ nền tảng cho sự vận hành của hệ thống chính trị và kinh tế Việt Nam.</p>
@@ -118,7 +164,10 @@ export default function Section3() {
 
                 <div className="relations-list">
                     {relations.map((r, i) => (
-                        <div className={`relation-item ${open === i ? 'open' : ''}`} key={i}>
+                        <div
+                            className={`relation-item reveal-card ${open === i ? 'open' : ''}`}
+                            key={i}
+                        >
                             <button className="relation-header" onClick={() => toggle(i)}>
                                 <div className="rel-num">{r.num}</div>
                                 <div className="rel-title-wrap">
@@ -129,11 +178,9 @@ export default function Section3() {
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M19 9l-7 7-7-7" /></svg>
                                 </div>
                             </button>
-                            {open === i && (
-                                <div className="relation-body">
-                                    {r.type === 'tripod' ? <TripodBody r={r} /> : <DualBody r={r} />}
-                                </div>
-                            )}
+                            <AnimatedAccordionBody isOpen={open === i}>
+                                {r.type === 'tripod' ? <TripodBody r={r} /> : <DualBody r={r} />}
+                            </AnimatedAccordionBody>
                         </div>
                     ))}
                 </div>

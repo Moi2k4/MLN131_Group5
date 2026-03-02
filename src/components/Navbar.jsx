@@ -9,7 +9,7 @@ export default function Navbar() {
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 60);
-      const sections = ['hero', 'section1', 'section2', 'section3', 'strategy-game'];
+      const sections = ['hero', 'section1', 'section2', 'section3', 'strategy-game', 'ai-usage'];
       for (let i = sections.length - 1; i >= 0; i--) {
         const el = document.getElementById(sections[i]);
         if (el && window.scrollY >= el.offsetTop - 120) {
@@ -42,7 +42,7 @@ export default function Navbar() {
       <div className="nav-inner container">
         <button className="nav-brand" onClick={() => scrollTo('hero')}>
           <span className="brand-badge">MLN131</span>
-          <span className="brand-text">Nhóm 1</span>
+          <span className="brand-text">Nhóm 5</span>
         </button>
         <ul className={`nav-links ${menuOpen ? 'open' : ''}`}>
           {[
@@ -50,7 +50,7 @@ export default function Navbar() {
             { id: 'section2', label: 'II. Yếu tố then chốt' },
             { id: 'section3', label: 'III. Mối quan hệ' },
             { id: 'strategy-game' , label: 'IV. Trò chơi' },
-            { id: 'ai', label: 'V. Sử dụng AI' },
+            { id: 'ai-usage', label: 'V. Sử dụng AI' },
           ].map(({ id, label }) => (
             <li key={id}>
               <button

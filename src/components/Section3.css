@@ -10,7 +10,7 @@
     border: 1px solid var(--border);
     border-radius: var(--radius);
     overflow: hidden;
-    transition: border-color var(--transition);
+    transition: border-color 0.3s ease, opacity 0.5s ease, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .relation-item.open {
@@ -81,20 +81,6 @@
     padding: 0 28px 28px;
     border-top: 1px solid var(--border);
     padding-top: 24px;
-    animation: slideDown 0.25s ease;
-
-}
-
-@keyframes slideDown {
-    from {
-        opacity: 0;
-        transform: translateY(-8px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
 }
 
 /* Tripod layout */
