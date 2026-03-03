@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './Section2.css';
+import Diagram3D from './Diagram3D';
 
 const factors = [
     {
@@ -198,7 +199,7 @@ export default function Section2() {
 
                 <div className="diagram-wrapper reveal-card">
                     <h3 className="subsection-title">Mô hình phát triển rút ngắn</h3>
-                    <OrbitDiagram />
+                    <Diagram3D />
                 </div>
             </div>
         </section>
