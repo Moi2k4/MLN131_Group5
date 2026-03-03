@@ -5,7 +5,7 @@ const factors = [
     {
         num: '01', icon: '🔬', color: '#f59e0b',
         title: 'Khoa học công nghệ & Kinh tế tri thức',
-        progress: 90,
+        label: 'KH&CN',
         points: [
             'Đẩy mạnh công nghiệp hóa, hiện đại hóa gắn với kinh tế tri thức.',
             'Cuộc CM KH-CN hiện đại là thời cơ và thách thức gay gắt.',
@@ -15,7 +15,7 @@ const factors = [
     {
         num: '02', icon: '🏛️', color: '#10b981',
         title: 'Thể chế kinh tế thị trường định hướng XHCN',
-        progress: 78,
+        label: 'Thể chế',
         points: [
             'Không sao chép máy móc mô hình tư bản chủ nghĩa thuần túy.',
             'Phát triển KTTT nhưng không rơi vào TBCN thuần túy.',
@@ -25,7 +25,7 @@ const factors = [
     {
         num: '03', icon: '🌐', color: '#6366f1',
         title: 'Hội nhập quốc tế & Độc lập tự chủ',
-        progress: 85,
+        label: 'Hội nhập',
         points: [
             'Chủ động hội nhập sâu rộng nhưng giữ vững bản sắc dân tộc.',
             'Tận dụng vốn, công nghệ và thị trường toàn cầu.',
@@ -35,7 +35,7 @@ const factors = [
     {
         num: '04', icon: '🤝', color: '#ef4444',
         title: 'Phát huy sức mạnh con người & Đại đoàn kết',
-        progress: 95,
+        label: 'Con người',
         points: [
             'Kế thừa "Chiến tranh nhân dân": dân biết, dân bàn, dân làm, dân kiểm tra.',
             'Thực hiện dân chủ cơ sở, nhân dân làm chủ thực sự.',
@@ -44,10 +44,89 @@ const factors = [
     },
 ];
 
+// ─── 3D Orbit Diagram ───────────────────────────────────────────────────────
+const TILT = 58;   // degrees — how tilted the orbit plane is
+const R = 120;  // orbit radius in px
+const tiltSin = Math.sin((TILT * Math.PI) / 180);
+const tiltCos = Math.cos((TILT * Math.PI) / 180);
+
+function OrbitDiagram() {
+    const nodesRef = useRef([]);
+    const rafRef = useRef(null);
+    const angleRef = useRef(0);
+
+    useEffect(() => {
+        const tick = () => {
+            angleRef.current = (angleRef.current + 0.35) % 360;
+            const a = angleRef.current;
+
+            nodesRef.current.forEach((node, i) => {
+                if (!node) return;
+                const theta = ((i * 90 + a) * Math.PI) / 180;
+
+                // Project circle in XZ plane tilted on X axis
+                const x = R * Math.cos(theta);
+                const y = -R * Math.sin(theta) * tiltSin;   // screen Y
+                const depth = R * Math.sin(theta) * tiltCos;    // depth
+
+                // Perspective-ish scale: far = smaller, near = larger
+                const t = (depth / R + 1) / 2;              // 0‥1
+                const scale = 0.62 + 0.5 * t;
+                const alpha = 0.45 + 0.55 * t;
+
+                node.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px)) scale(${scale})`;
+                node.style.opacity = alpha;
+                node.style.zIndex = Math.round(depth + 100);
+            });
+
+            rafRef.current = requestAnimationFrame(tick);
+        };
+
+        rafRef.current = requestAnimationFrame(tick);
+        return () => cancelAnimationFrame(rafRef.current);
+    }, []);
+
+    return (
+        <div className="orbit-diagram">
+            {/* Ellipse track — visual only */}
+            <svg className="orbit-track-svg" viewBox="0 0 340 340">
+                <ellipse
+                    cx="170" cy="170"
+                    rx={R} ry={R * tiltCos}
+                    fill="none"
+                    stroke="rgba(255,255,255,0.06)"
+                    strokeWidth="1.5"
+                    strokeDasharray="6 5"
+                />
+            </svg>
+
+            {/* Center core */}
+            <div className="orbit-core">
+                <div className="orbit-core-ring" />
+                <span>Rút ngắn<br />thời kỳ quá độ</span>
+            </div>
+
+            {/* Orbiting nodes — positioned by JS */}
+            {factors.map((f, i) => (
+                <div
+                    key={i}
+                    className="orbit-node"
+                    ref={el => nodesRef.current[i] = el}
+                    style={{ '--c': f.color }}
+                >
+                    <div className="orbit-node-icon">{f.icon}</div>
+                    <span className="orbit-node-label">{f.label}</span>
+                </div>
+            ))}
+        </div>
+    );
+}
+
+// ─── Main Component ──────────────────────────────────────────────────────────
 export default function Section2() {
-    const [hovered, setHovered] = useState(null);
     const [revealed, setRevealed] = useState([]);
     const sectionRef = useRef(null);
+
 
     useEffect(() => {
         const section = sectionRef.current;
@@ -60,7 +139,7 @@ export default function Section2() {
                     obs.unobserve(e.target);
                 }
             }),
-            { threshold: 0.15 }
+            { threshold: 0.1 }
         );
         cards.forEach(c => obs.observe(c));
 
@@ -80,6 +159,7 @@ export default function Section2() {
         <section className="content-section section-alt" id="section2" ref={sectionRef}>
             <div className="container">
                 <div className="section-header reveal-card">
+                    <div className="s1-header-stripe" />
                     <span className="section-badge">Phần II</span>
                     <h2 className="section-title">Các yếu tố then chốt để rút ngắn thời kỳ quá độ bền vững</h2>
                     <p className="section-intro">
@@ -90,61 +170,35 @@ export default function Section2() {
                 <div className="factors-grid">
                     {factors.map((f, i) => (
                         <div
-                            className={`factor-card ${hovered === i ? 'hovered' : ''} ${revealed.includes(i) ? 'card-visible' : ''}`}
+                            className={`factor-card ${revealed.includes(i) ? 'card-visible' : ''}`}
                             key={i}
                             data-idx={i}
-                            style={{ '--accent': f.color, transitionDelay: `${i * 0.1}s` }}
-                            onMouseEnter={() => setHovered(i)}
-                            onMouseLeave={() => setHovered(null)}
+                            style={{ transitionDelay: `${i * 0.1}s` }}
                         >
-                            <div className="factor-num">{f.num}</div>
-                            <div className="factor-icon">{f.icon}</div>
-                            <h3>{f.title}</h3>
-                            <ul className="factor-list">
-                                {f.points.map((p, j) => <li key={j}>{p}</li>)}
-                            </ul>
-                            {/* Animated progress ring */}
-                            <div className="factor-progress">
-                                <svg viewBox="0 0 44 44" className="progress-ring">
-                                    <circle cx="22" cy="22" r="18" className="ring-bg" />
-                                    <circle
-                                        cx="22" cy="22" r="18"
-                                        className="ring-fill"
-                                        style={{
-                                            '--progress': revealed.includes(i) ? f.progress / 100 : 0,
-                                            stroke: f.color,
-                                        }}
-                                    />
-                                </svg>
-                                <span className="progress-label" style={{ color: f.color }}>{f.progress}%</span>
+                            {/* Left colored strip */}
+                            <div
+                                className="factor-left"
+                                data-num={f.num}
+                                style={{ background: `linear-gradient(160deg, ${f.color}22, ${f.color}08)`, borderRight: `3px solid ${f.color}` }}
+                            >
+                                <div className="factor-icon-wrap">{f.icon}</div>
+                                <div className="factor-num-label">#{f.num}</div>
                             </div>
-                            <div className="factor-bar" />
+
+                            {/* Main body */}
+                            <div className="factor-body">
+                                <h3>{f.title}</h3>
+                                <ul className="factor-list">
+                                    {f.points.map((p, j) => <li key={j}>{p}</li>)}
+                                </ul>
+                            </div>
                         </div>
                     ))}
                 </div>
 
                 <div className="diagram-wrapper reveal-card">
                     <h3 className="subsection-title">Mô hình phát triển rút ngắn</h3>
-                    <div className="diagram">
-                        <div className="diagram-core">
-                            <span>Rút ngắn<br />thời kỳ quá độ</span>
-                        </div>
-                        {factors.map((f, i) => (
-                            <div key={i} className={`diagram-item d-item-${i}`} style={{ '--color': f.color }}>
-                                <div className="di-icon">{f.icon}</div>
-                                <span>{f.num === '01' ? 'KH&CN' : f.num === '02' ? 'Thể chế' : f.num === '03' ? 'Hội nhập' : 'Con người'}</span>
-                            </div>
-                        ))}
-                        <svg className="diagram-lines" viewBox="0 0 300 300">
-                            {[0, 1, 2, 3].map(i => {
-                                const angles = [225, 315, 135, 45];
-                                const ang = (angles[i] * Math.PI) / 180;
-                                const x2 = 150 + 100 * Math.cos(ang);
-                                const y2 = 150 + 100 * Math.sin(ang);
-                                return <line key={i} x1="150" y1="150" x2={x2} y2={y2} stroke="rgba(255,255,255,0.08)" strokeWidth="1" strokeDasharray="4 4" />;
-                            })}
-                        </svg>
-                    </div>
+                    <OrbitDiagram />
                 </div>
             </div>
         </section>

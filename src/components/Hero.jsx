@@ -10,10 +10,10 @@ export default function Hero() {
     const [typedText, setTypedText] = useState('');
     const [typingDone, setTypingDone] = useState(false);
 
-    // Typewriter effect for subtitle
+    // Typewriter effect
     useEffect(() => {
         let i = 0;
-        const delay = 900; // start after 0.9s
+        const delay = 900;
         const speed = 38;
         const t = setTimeout(() => {
             const interval = setInterval(() => {
@@ -39,14 +39,12 @@ export default function Hero() {
             const obs = new IntersectionObserver(([entry]) => {
                 if (entry.isIntersecting && !started) {
                     started = true;
-                    let count = 0;
-                    const duration = 900;
+                    const duration = 1000;
                     const start = performance.now();
                     const tick = (now) => {
                         const progress = Math.min((now - start) / duration, 1);
                         const ease = 1 - Math.pow(1 - progress, 3);
-                        count = Math.round(ease * target);
-                        el.textContent = count;
+                        el.textContent = Math.round(ease * target);
                         if (progress < 1) requestAnimationFrame(tick);
                     };
                     requestAnimationFrame(tick);
@@ -70,7 +68,7 @@ export default function Hero() {
             const dx = (x - cx) / cx;
             const dy = (y - cy) / cy;
             glows.forEach((g, i) => {
-                const factor = (i + 1) * 18;
+                const factor = (i + 1) * 16;
                 g.style.transform = `translate(${dx * factor}px, ${dy * factor}px)`;
             });
         };
@@ -83,15 +81,21 @@ export default function Hero() {
     return (
         <section className="hero" id="hero" ref={heroRef}>
             <div className="hero-bg">
+                {/* Diagonal red/gold split */}
+                <div className="hero-split-red" />
+                <div className="hero-split-gold" />
                 <div className="hero-grid" />
                 <div className="hero-glow glow-1" />
                 <div className="hero-glow glow-2" />
                 <div className="hero-glow glow-3" />
                 <Particles />
+                {/* Vietnamese flag watermark */}
+                <div className="hero-flag-watermark" aria-hidden="true">🇻🇳</div>
             </div>
 
             <div className="container hero-content">
                 <div className="hero-tag shimmer-badge fade-up" style={{ animationDelay: '0s' }}>
+                    <span className="hero-tag-dot" />
                     MLN131 &bull; Nhóm 5 &bull; Chủ đề thuyết trình
                 </div>
                 <h1 className="hero-title fade-up" style={{ animationDelay: '0.15s' }}>
@@ -106,7 +110,7 @@ export default function Hero() {
                     Phân tích những đặc điểm đan xen giữa cái cũ và cái mới trong thời kỳ quá độ lên chủ nghĩa xã hội tại Việt Nam, cùng những yếu tố then chốt để rút ngắn thời kỳ quá độ một cách bền vững.
                 </p>
                 <div className="hero-actions fade-up" style={{ animationDelay: '0.6s' }}>
-                    <button className="btn btn-primary magnetic" onClick={() => scrollTo('section1')}>
+                    <button className="btn btn-primary" onClick={() => scrollTo('section1')}>
                         <span className="btn-shine" />
                         Khám phá ngay
                     </button>
@@ -126,6 +130,11 @@ export default function Hero() {
                     <div className="stat">
                         <span className="stat-num" data-target="5" ref={el => statsRef.current[2] = el}>0</span>
                         <span className="stat-label">Mối quan hệ</span>
+                    </div>
+                    <div className="stat-divider" />
+                    <div className="stat">
+                        <span className="stat-num"><span data-target="80" ref={el => statsRef.current[3] = el}>0</span><span className="stat-suffix">+</span></span>
+                        <span className="stat-label">Năm lịch sử</span>
                     </div>
                 </div>
             </div>

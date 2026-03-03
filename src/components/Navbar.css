@@ -4,9 +4,10 @@
     left: 0;
     right: 0;
     z-index: 100;
-    padding: 20px 0;
+    padding: 18px 0;
     transition: var(--transition);
     animation: navSlideIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+    border-top: 3px solid var(--red);
 }
 
 @keyframes navSlideIn {
@@ -22,11 +23,12 @@
 }
 
 .navbar.scrolled {
-    background: rgba(7, 9, 15, 0.9);
-    backdrop-filter: blur(20px);
+    background: rgba(6, 8, 14, 0.94);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
     padding: 12px 0;
-    border-bottom: 1px solid var(--border);
-    box-shadow: 0 4px 32px rgba(0, 0, 0, 0.4);
+    border-bottom: 1px solid rgba(211, 47, 47, 0.2);
+    box-shadow: 0 4px 40px rgba(0, 0, 0, 0.5);
 }
 
 .nav-inner {
@@ -46,13 +48,14 @@
 }
 
 .brand-badge {
-    background: linear-gradient(135deg, var(--accent), var(--accent2));
-    color: #000;
+    background: linear-gradient(135deg, var(--red), #b71c1c);
+    color: #fff;
     font-weight: 800;
     font-size: 13px;
-    padding: 4px 10px;
+    padding: 5px 12px;
     border-radius: 6px;
-    letter-spacing: 0.5px;
+    letter-spacing: 1px;
+    box-shadow: 0 2px 12px var(--red-glow);
 }
 
 .brand-text {
@@ -61,10 +64,16 @@
     font-size: 15px;
 }
 
+.brand-sep {
+    width: 1px;
+    height: 16px;
+    background: var(--border2);
+}
+
 .nav-links {
     display: flex;
     list-style: none;
-    gap: 4px;
+    gap: 2px;
     align-items: center;
 }
 
@@ -73,12 +82,13 @@
     border: none;
     color: var(--text-muted);
     font-family: 'Be Vietnam Pro', sans-serif;
-    font-size: 14px;
+    font-size: 13.5px;
     font-weight: 500;
-    padding: 8px 14px;
+    padding: 7px 13px;
     border-radius: 8px;
     cursor: pointer;
     transition: var(--transition);
+    position: relative;
 }
 
 .nav-link:hover {
@@ -89,7 +99,6 @@
 .nav-link.active {
     color: var(--accent);
     background: rgba(200, 168, 75, 0.1);
-    position: relative;
 }
 
 .nav-link.active::after {
@@ -98,11 +107,11 @@
     bottom: 3px;
     left: 50%;
     transform: translateX(-50%);
-    width: 16px;
+    width: 18px;
     height: 2px;
-    background: var(--accent);
+    background: linear-gradient(90deg, var(--red), var(--accent));
     border-radius: 99px;
-    animation: dotPop 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    animation: dotPop 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 @keyframes dotPop {
@@ -112,7 +121,7 @@
     }
 
     to {
-        width: 16px;
+        width: 18px;
         opacity: 1;
     }
 }
@@ -159,11 +168,11 @@
         top: 100%;
         left: 0;
         right: 0;
-        background: rgba(7, 9, 15, 0.97);
+        background: rgba(6, 8, 14, 0.98);
         backdrop-filter: blur(20px);
         flex-direction: column;
         padding: 16px;
-        border-bottom: 1px solid var(--border);
+        border-bottom: 1px solid rgba(211, 47, 47, 0.2);
         gap: 4px;
     }
 

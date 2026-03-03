@@ -16,7 +16,6 @@ export default function Section1() {
         const section = sectionRef.current;
         if (!section) return;
 
-        // Staggered reveal for all scroll-reveal elements
         const els = section.querySelectorAll('.reveal-card, .timeline-item, .section-header');
         const obs = new IntersectionObserver(
             (entries) => entries.forEach(e => {
@@ -38,6 +37,7 @@ export default function Section1() {
         <section className="content-section" id="section1" ref={sectionRef}>
             <div className="container">
                 <div className="section-header reveal-card">
+                    <div className="s1-header-stripe" />
                     <span className="section-badge">Phần I</span>
                     <h2 className="section-title">Bản chất &amp; Đặc điểm thời kỳ quá độ tại Việt Nam</h2>
                     <p className="section-intro">Sự phân tích sâu về tính tất yếu lịch sử và bản chất đan xen giữa cái cũ và cái mới.</p>
@@ -50,7 +50,7 @@ export default function Section1() {
                             <div className="card-icon">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
                             </div>
-                            <span className="card-tag-badge">a</span>
+                            <span className="card-tag-badge">A</span>
                         </div>
                         <h3 className="card-title">Tính tất yếu và sự lựa chọn lịch sử</h3>
                         <div className="card-content">
@@ -73,7 +73,7 @@ export default function Section1() {
                             <div className="card-icon">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg>
                             </div>
-                            <span className="card-tag-badge">b</span>
+                            <span className="card-tag-badge">B</span>
                         </div>
                         <h3 className="card-title">Đặc điểm xuất phát điểm — Tính chất đan xen</h3>
                         <div className="card-content">
@@ -101,7 +101,7 @@ export default function Section1() {
                         {timelineEvents.map((ev, i) => (
                             <div className="timeline-item reveal-card" key={i}>
                                 <div className="timeline-dot" />
-                                <div className="timeline-content">
+                                <div className="timeline-content" data-ghost={ev.year}>
                                     <span className="timeline-year">{ev.year}</span>
                                     <h4>{ev.title}</h4>
                                     <p>{ev.desc}</p>

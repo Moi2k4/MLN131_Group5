@@ -132,22 +132,43 @@ export default function Section3() {
     const [open, setOpen] = useState(null);
     const toggle = (i) => setOpen(open === i ? null : i);
     const sectionRef = useRef(null);
+    const [revealedItems, setRevealedItems] = useState(new Set());
+    const [headerRevealed, setHeaderRevealed] = useState(false);
 
     useEffect(() => {
         const section = sectionRef.current;
         if (!section) return;
-        const els = section.querySelectorAll('.section-header, .relation-item');
+
+        // Observe the section header separately
+        const header = section.querySelector('.section-header');
+        if (header) {
+            const hObs = new IntersectionObserver(
+                ([entry]) => {
+                    if (entry.isIntersecting) {
+                        setHeaderRevealed(true);
+                        hObs.disconnect();
+                    }
+                },
+                { threshold: 0, rootMargin: '0px 0px -50px 0px' }
+            );
+            hObs.observe(header);
+        }
+
+        // Observe each relation item by index
+        const items = section.querySelectorAll('.relation-item');
         const obs = new IntersectionObserver(
-            (entries) => entries.forEach((e, idx) => {
+            (entries) => entries.forEach(e => {
                 if (e.isIntersecting) {
-                    e.target.classList.add('revealed');
+                    const idx = +e.target.dataset.idx;
+                    setRevealedItems(prev => new Set([...prev, idx]));
                     obs.unobserve(e.target);
                 }
             }),
             { threshold: 0, rootMargin: '0px 0px -50px 0px' }
         );
-        els.forEach((el, i) => {
-            el.style.transitionDelay = `${i * 0.06}s`;
+        items.forEach((el, i) => {
+            el.dataset.idx = i;
+            el.style.transitionDelay = `${i * 0.07}s`;
             obs.observe(el);
         });
         return () => obs.disconnect();
@@ -156,7 +177,8 @@ export default function Section3() {
     return (
         <section className="content-section" id="section3" ref={sectionRef}>
             <div className="container">
-                <div className="section-header reveal-card">
+                <div className={`section-header reveal-card ${headerRevealed ? 'revealed' : ''}`}>
+                    <div className="s1-header-stripe" />
                     <span className="section-badge">Phần III</span>
                     <h2 className="section-title">Những mối quan hệ cần phải giải quyết</h2>
                     <p className="section-intro">Năm mối quan hệ nền tảng cho sự vận hành của hệ thống chính trị và kinh tế Việt Nam.</p>
@@ -165,7 +187,7 @@ export default function Section3() {
                 <div className="relations-list">
                     {relations.map((r, i) => (
                         <div
-                            className={`relation-item reveal-card ${open === i ? 'open' : ''}`}
+                            className={`relation-item reveal-card ${revealedItems.has(i) ? 'revealed' : ''} ${open === i ? 'open' : ''}`}
                             key={i}
                         >
                             <button className="relation-header" onClick={() => toggle(i)}>
