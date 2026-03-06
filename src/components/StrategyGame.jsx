@@ -145,13 +145,13 @@ export default function StrategyGame() {
     const avgScore = (stats.economy + stats.socialJustice + stats.environment + stats.publicSupport) / 4;
     const balance = Math.max(...Object.values(stats)) - Math.min(...Object.values(stats));
 
-    if (avgScore >= 70 && balance < 30) {
+    if (avgScore >= 80 && balance <= 40) {
       return {
         title: '🏆 Lãnh Đạo Xuất Sắc',
         message: 'Bạn đã thành công trong việc điều hành đất nước qua thời kỳ quá độ! Tất cả các chỉ số đều ở mức tốt và cân bằng. Việt Nam đang trên con đường phát triển bền vững.',
         class: 'excellent'
       };
-    } else if (avgScore >= 55 && balance < 40) {
+    } else if (avgScore >= 65 && balance <= 50) {
       return {
         title: '👍 Quản Lý Tốt',
         message: 'Bạn đã duy trì sự ổn định và phát triển đất nước. Một số lĩnh vực cần chú ý thêm, nhưng nhìn chung đất nước đang đi đúng hướng.',
