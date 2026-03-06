@@ -96,7 +96,7 @@ export default function Hero() {
             <div className="container hero-content">
                 <div className="hero-tag shimmer-badge fade-up" style={{ animationDelay: '0s' }}>
                     <span className="hero-tag-dot" />
-                    MLN131 &bull; Nhóm 5 &bull; Chủ đề thuyết trình
+                    MLN131 &bull; Nhóm 1 &bull; 
                 </div>
                 <h1 className="hero-title fade-up" style={{ animationDelay: '0.15s' }}>
                     Việt Nam trong<br />
