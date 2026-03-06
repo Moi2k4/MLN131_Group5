@@ -5,8 +5,8 @@ const timelineEvents = [
     { year: '1945', title: 'Độc lập dân tộc', desc: 'Cách mạng tháng Tám thành công, khai sinh nước VNDCCH.' },
     { year: '1954', title: 'Giải phóng miền Bắc', desc: 'Hiệp định Genève – miền Bắc bắt đầu xây dựng CNXH.' },
     { year: '1973', title: 'Hiệp định Paris', desc: 'Tranh thủ sự ủng hộ quốc tế, giữ vững độc lập tự chủ.' },
-    { year: '1975', title: 'Thống nhất đất nước', desc: 'Nền tảng XHCN miền Bắc đóng vai trò quyết định cho thắng lợi.' },
-    { year: '1986', title: 'Đổi mới', desc: 'Chuyển sang kinh tế thị trường định hướng XHCN – bước ngoặt lịch sử.' },
+    { year: '1975', title: 'Thống nhất đất nước', desc: 'Nền tảng CNXH miền Bắc đóng vai trò quyết định cho thắng lợi.' },
+    { year: '1986', title: 'Đổi mới', desc: 'Chuyển sang kinh tế thị trường định hướng CNXH – bước ngoặt lịch sử.' },
 ];
 
 export default function Section1() {
@@ -39,7 +39,7 @@ export default function Section1() {
                 <div className="section-header reveal-card">
                     <div className="s1-header-stripe" />
                     <span className="section-badge">Phần I</span>
-                    <h2 className="section-title">Bản chất &amp; Đặc điểm thời kỳ quá độ tại Việt Nam</h2>
+                    <h2 className="section-title">Bản chất và Đặc điểm thời kỳ quá độ tại Việt Nam</h2>
                     <p className="section-intro">Sự phân tích sâu về tính tất yếu lịch sử và bản chất đan xen giữa cái cũ và cái mới.</p>
                 </div>
 
@@ -57,7 +57,7 @@ export default function Section1() {
                             {[
                                 { label: 'Sự lựa chọn duy nhất đúng:', text: 'Con đường phản ánh đúng quy luật phát triển khách quan của cách mạng Việt Nam.' },
                                 { label: 'Kế thừa có chọn lọc:', text: 'Bỏ qua xác lập vị trí thống trị của QHSX tư bản chủ nghĩa, nhưng kế thừa thành tựu văn minh KH-CN và quản lý.' },
-                                { label: 'Minh chứng lịch sử:', text: 'Miền Bắc XHCN là hậu phương lớn — nền tảng vật chất, chính trị dẫn đến thắng lợi 1975.' },
+                                { label: 'Minh chứng lịch sử:', text: 'Miền Bắc CNXH là hậu phương lớn — nền tảng vật chất, chính trị dẫn đến thắng lợi 1975.' },
                             ].map((p, i) => (
                                 <div className="point-item" key={i}>
                                     <div className="point-dot" />
@@ -78,7 +78,7 @@ export default function Section1() {
                         <h3 className="card-title">Đặc điểm xuất phát điểm — Tính chất đan xen</h3>
                         <div className="card-content">
                             {[
-                                { label: 'Sự đan xen cũ – mới:', text: 'Đấu tranh giữa cái cũ (tàn dư phong kiến, thực dân, tâm lý sản xuất nhỏ) và cái mới (QHSX XHCN, công nghệ hiện đại).' },
+                                { label: 'Sự đan xen cũ – mới:', text: 'Đấu tranh giữa cái cũ (tàn dư phong kiến, thực dân, tâm lý sản xuất nhỏ) và cái mới (QHSX CNXH, công nghệ hiện đại).' },
                                 { label: 'Kiên định mục tiêu:', text: 'Giữ vững độc lập dân tộc gắn liền với CNXH, không dao động trước bao vây, cấm vận hay áp lực quốc tế.' },
                             ].map((p, i) => (
                                 <div className="point-item" key={i}>

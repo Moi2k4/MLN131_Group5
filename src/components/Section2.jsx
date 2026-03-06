@@ -6,7 +6,7 @@ const factors = [
     {
         num: '01', icon: '🔬', color: '#f59e0b',
         title: 'Khoa học công nghệ & Kinh tế tri thức',
-        label: 'KH&CN',
+        label: 'KH-CN',
         points: [
             'Đẩy mạnh công nghiệp hóa, hiện đại hóa gắn với kinh tế tri thức.',
             'Cuộc CM KH-CN hiện đại là thời cơ và thách thức gay gắt.',
@@ -15,7 +15,7 @@ const factors = [
     },
     {
         num: '02', icon: '🏛️', color: '#10b981',
-        title: 'Thể chế kinh tế thị trường định hướng XHCN',
+        title: 'Thể chế kinh tế thị trường định hướng CNXH',
         label: 'Thể chế',
         points: [
             'Không sao chép máy móc mô hình tư bản chủ nghĩa thuần túy.',

@@ -21,7 +21,7 @@ export default function Footer() {
                                 <span className="brand-badge">MLN131</span>
                                 <span className="footer-dot">⭐</span>
                             </div>
-                            <p className="footer-brand-name">Nhóm 5 — Môn Chủ nghĩa Mác–Lênin</p>
+                            <p className="footer-brand-name">Nhóm 1 — Môn Chủ nghĩa Mác–Lênin</p>
                             <p className="footer-desc">
                                 Việt Nam trong thời kỳ quá độ lên chủ nghĩa xã hội:<br />
                                 Đặc điểm và con đường phát triển rút ngắn.
@@ -45,7 +45,7 @@ export default function Footer() {
                     </div>
 
                     <div className="footer-bottom">
-                        <p>© 2026 MLN131 – Nhóm 5. Trường Đại học.</p>
+                        <p>© 2026 MLN131 – Nhóm 1. Trường Đại học FPT.</p>
                         <div className="footer-flag">🇻🇳</div>
                     </div>
                 </div>

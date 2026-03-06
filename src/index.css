@@ -125,7 +125,7 @@ body {
 }
 
 .section-title {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Be Vietnam Pro', sans-serif;
   font-size: clamp(26px, 4.5vw, 42px);
   font-weight: 700;
   color: #fff;

@@ -34,39 +34,12 @@ const aiTools = [
     }
 ];
 
-const verificationSteps = [
-    {
-        step: 1,
-        title: 'Ghi nhận Thông tin AI',
-        desc: 'Tiếp nhận các gợi ý và thông tin từ các công cụ AI như Claude Sonnet, ChatGPT, Gemini.',
-        icon: '🤖'
-    },
-    {
-        step: 2,
-        title: 'Đối chiếu với Giáo trình',
-        desc: 'So sánh thông tin nhận được với Giáo trình Tư tưởng Hồ Chí Minh chính thống.',
-        icon: '📚'
-    },
-    {
-        step: 3,
-        title: 'Phân loại Nội dung',
-        desc: 'Xếp loại nội dung thành: Chính xác, Chưa đủ căn cứ, hoặc Sai.',
-        icon: '🔍'
-    },
-    {
-        step: 4,
-        title: 'Chốt Nội dung Cuối',
-        desc: 'Nhóm chịu trách nhiệm phê duyệt và xác nhận nội dung cuối cùng.',
-        icon: '✅'
-    }
-];
-
 const commitments = [
     { icon: '🚫', text: 'Không lạm dụng AI' },
-    { icon: '📖', text: 'Ưu tiên Nguồn Chính thống' },
-    { icon: '🏷️', text: 'Đánh dấu Rõ ràng' },
-    { icon: '🗑️', text: 'Loại bỏ Thông tin Không truy vết' },
-    { icon: '✔️', text: 'Xác thực Chặt chẽ' }
+    { icon: '📖', text: 'Ưu tiên nguồn chính thống' },
+    { icon: '🏷️', text: 'Đánh dấu rõ ràng' },
+    { icon: '🗑️', text: 'Loại bỏ thông tin không truy vết' },
+    { icon: '✔️', text: 'Xác thực chặt chẽ' }
 ];
 
 export default function AIUsage() {
@@ -125,34 +98,7 @@ export default function AIUsage() {
                     </div>
                 </div>
 
-                {/* Verification Process */}
-                <div className="verification-section reveal-item">
-                    <h3 className="subsection-title">
-                        <span className="title-icon">🔄</span>
-                        Quy trình Kiểm chứng
-                    </h3>
-                    <div className="verification-flow">
-                        {verificationSteps.map((step, idx) => (
-                            <React.Fragment key={idx}>
-                                <div className="verification-step">
-                                    <div className="step-number">
-                                        Bước {step.step}
-                                    </div>
-                                    <div className="step-icon">{step.icon}</div>
-                                    <h4 className="step-title">{step.title}</h4>
-                                    <p className="step-desc">{step.desc}</p>
-                                </div>
-                                {idx < verificationSteps.length - 1 && (
-                                    <div className="flow-connector">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                            <path d="M12 5v14m0 0l7-7m-7 7l-7-7"/>
-                                        </svg>
-                                    </div>
-                                )}
-                            </React.Fragment>
-                        ))}
-                    </div>
-                </div>
+                
 
                 {/* Integrity Commitment */}
                 <div className="commitment-section reveal-item">

@@ -226,7 +226,7 @@ export default function StrategyGame() {
     <section className="strategy-game" id="strategy-game">
       <div className="game-container">
         <div className="game-header">
-          <h2 className="game-title">🎮 Trò Chơi Chiến Lược</h2>
+          <h2 className="game-title">🎮 Trò chơi chiến lược</h2>
           <p className="game-subtitle">Quản lý Việt Nam trong thời kỳ quá độ</p>
         </div>
 

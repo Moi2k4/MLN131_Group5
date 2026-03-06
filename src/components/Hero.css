@@ -155,9 +155,9 @@
 }
 
 .hero-title {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Be Vietnam Pro', sans-serif;
     font-size: clamp(40px, 7.5vw, 88px);
-    font-weight: 700;
+    font-weight: 800;
     line-height: 1.1;
     color: #fff;
     letter-spacing: -2px;
